@@ -1,0 +1,80 @@
+# springboot port
+server:
+  port: 11010
+  servlet:
+    context-path: /api
+
+# spring 配置
+spring:
+  application:
+    name: starsapi-backend
+  # DataSource 配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 开发环境-本地地址-MySQL地址
+    url: jdbc:mysql://localhost:3306/starsapi
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  # session 配置
+  session:
+    timeout: 1800
+    store-type: redis
+  # redis 配置
+  redis:
+    port: 6379
+    # 开发环境-本地内网地址-虚拟机地址-Redis地址
+    host: 192.168.123.10
+    database: 0
+    password: 123456
+  # rabbitmq 配置
+  rabbitmq:
+    port: 5672
+    # 开发环境-本地内网地址-虚拟机地址-RabbitMQ地址
+    host: 192.168.123.10
+    virtual-host: /
+    username: root
+    password: 123456
+
+# mybatis 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# dubbo整合nacos 配置
+dubbo:
+  application:
+    name: starsapi
+    qos:
+      # 是否启动QoS
+      enable: true
+      # 启动QoS绑定的端口
+      port: 33010
+      # 是否允许远程访问
+      foregin:
+        ip: true
+  protocol:
+    name: dubbo
+    port: 22010
+  registry:
+    id: nacos-registry
+    # 开发环境-本地地址-Nacos地址
+    address: nacos://localhost:8848
+
+# 阿里云 OSS 配置
+aliyun:
+  oss:
+    endpoint: oss-cn-guangzhou.aliyuncs.com
+    urlPrefix: http://stars.oss-cn-guangzhou.aliyuncs.com
+    accessKeyId: LTAI5tRnsxN4Qko8dkgU8e8t
+    accessKeySecret: Oma3Ssv4KZgmGavNIf5EjRLohqnkhg
+    bucketName: stars
+    fileHost: files

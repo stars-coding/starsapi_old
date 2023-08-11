@@ -1,0 +1,14 @@
+# springboot port
+server:
+  port: 11020
+  servlet:
+    context-path: /api
+
+# spring 配置
+spring:
+  redis:
+    # 开发环境-本地内网地址-虚拟机地址-Redis地址
+    host: 192.168.123.10
+    password: 123456
+    port: 6379
+    database: 0

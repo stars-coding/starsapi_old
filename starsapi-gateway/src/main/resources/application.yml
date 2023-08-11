@@ -1,0 +1,36 @@
+# springboot port
+server:
+  port: 11030
+
+# spring 配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          # 开发环境-本地地址-模拟接口地址
+          uri: http://localhost:11020
+          predicates:
+            - Path=/api/**
+          filter:
+            - AddRequestHeader=Info, StarsFlowStaining
+
+# dubbo整合nacos 配置
+dubbo:
+  application:
+    name: starsapi
+    qos:
+      # 是否启动QoS
+      enable: true
+      # 启动QoS绑定的端口
+      port: 33030
+      # 是否允许远程访问
+      foregin:
+        ip: true
+  protocol:
+    name: dubbo
+    port: 22030
+  registry:
+    id: nacos-registry
+    # 开发环境-本地地址-Nacos地址
+    address: nacos://localhost:8848
