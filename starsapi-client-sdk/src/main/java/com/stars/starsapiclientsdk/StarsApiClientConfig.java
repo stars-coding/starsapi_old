@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConfigurationProperties("starsapi.client")
+@Data
 @ComponentScan
 public class StarsApiClientConfig {
 
